@@ -130,6 +130,11 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
 }
 
+.brand-logo {
+  height: 36px;
+  width: auto;
+}
+
 .nav {
   display: flex;
   align-items: center;
