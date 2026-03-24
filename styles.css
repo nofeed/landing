@@ -310,6 +310,21 @@ img { max-width: 100%; display: block; }
   text-decoration: underline;
 }
 
+.form-msg {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 1.4em;
+}
+
+.form-msg:empty { margin: 0; }
+
+.form-msg--ok { color: var(--brew-secondary); }
+.form-msg--err { color: #c0392b; }
+.form-msg--light.form-msg--ok { color: #7dcea0; }
+.form-msg--light.form-msg--err { color: #f1948a; }
+}
+
 .hero-form .btn {
   width: 100%;
 }

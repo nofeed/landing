@@ -51,11 +51,13 @@
         <aside class="hero-card" id="hero-form">
           <h2 class="hero-card__title">Richiedi accesso anticipato</h2>
           <p class="hero-card__subtitle">Lascia la tua email e ti avvisiamo quando si parte.</p>
-          <form class="hero-form">
-            <input class="hero-input" type="text" placeholder="Il tuo nome" />
-            <input class="hero-input" type="email" placeholder="La tua email" required />
-            <button class="btn btn-primary" type="button">Avvisami al lancio</button>
+          <form class="hero-form" id="form-consumer">
+            <input class="hero-input" type="text" name="nome" placeholder="Il tuo nome" />
+            <input class="hero-input" type="email" name="email" placeholder="La tua email" required />
+            <input type="hidden" name="tipo" value="consumatore" />
+            <button class="btn btn-primary" type="submit">Avvisami al lancio</button>
           </form>
+          <p class="form-msg" id="msg-consumer"></p>
           <p class="hero-form__note">Nessuno spam. Sei un produttore? <a href="#produttori" class="hero-form__link">Richiedi accesso →</a></p>
         </aside>
       </div>
@@ -148,11 +150,13 @@
         <div class="card card--producer-form">
           <h3>Richiedi accesso produttore</h3>
           <p>Cerchiamo realtà indipendenti con una forte identità territoriale. Ti contattiamo quando apriamo la prima fase di onboarding.</p>
-          <form class="form form--light">
-            <input class="input input--light" type="text" placeholder="Nome attività" />
-            <input class="input input--light" type="email" placeholder="Email di contatto" />
-            <button class="btn btn-primary" type="button">Richiedi accesso produttore</button>
+          <form class="form form--light" id="form-producer">
+            <input class="input input--light" type="text" name="nome" placeholder="Nome attività" />
+            <input class="input input--light" type="email" name="email" placeholder="Email di contatto" required />
+            <input type="hidden" name="tipo" value="produttore" />
+            <button class="btn btn-primary" type="submit">Richiedi accesso produttore</button>
           </form>
+          <p class="form-msg" id="msg-producer"></p>
           <p class="small-note small-note--light">Partiamo con un gruppo selezionato. Ti contattiamo al momento giusto.</p>
         </div>
       </div>
@@ -166,10 +170,12 @@
               <h2>Pronto a scoprire il craft italiano?</h2>
               <p>Iscriviti e ti avvisiamo quando apriamo. Nessuno spam.</p>
             </div>
-            <form class="cta-bottom__form">
-              <input class="input" type="email" placeholder="La tua email" required />
-              <button class="btn btn-primary btn--accent" type="button">Avvisami al lancio</button>
+            <form class="cta-bottom__form" id="form-bottom">
+              <input class="input" type="email" name="email" placeholder="La tua email" required />
+              <input type="hidden" name="tipo" value="consumatore" />
+              <button class="btn btn-primary btn--accent" type="submit">Avvisami al lancio</button>
             </form>
+            <p class="form-msg form-msg--light" id="msg-bottom"></p>
           </div>
         </div>
       </div>
@@ -182,5 +188,66 @@
       <span class="footer-copy">2026</span>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    // Web3Forms: go to web3forms.com, enter your email,
+    // and paste the access key you receive below.
+    var ACCESS_KEY = '48192c84-5023-4412-a642-2fea00062d7e';
+
+    function handleSubmit(formId, msgId) {
+      var form = document.getElementById(formId);
+      var msg = document.getElementById(msgId);
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Invio...';
+        msg.textContent = '';
+        msg.className = msg.className.replace(' form-msg--ok', '').replace(' form-msg--err', '');
+
+        var data = new FormData(form);
+        data.append('access_key', ACCESS_KEY);
+        data.append('replyto', data.get('email'));
+        var tipo = data.get('tipo') || 'consumatore';
+        if (tipo === 'produttore') {
+          data.append('subject', '🍺 [PRODUTTORE] Nuova richiesta accesso — ' + (data.get('nome') || ''));
+        } else {
+          data.append('subject', '🛒 [CONSUMATORE] Nuova iscrizione — ' + (data.get('nome') || data.get('email')));
+        }
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (res.success) {
+              msg.textContent = 'Iscrizione completata!';
+              msg.classList.add('form-msg--ok');
+              form.reset();
+            } else {
+              msg.textContent = 'Errore, riprova.';
+              msg.classList.add('form-msg--err');
+            }
+          })
+          .catch(function () {
+            msg.textContent = 'Errore di connessione, riprova.';
+            msg.classList.add('form-msg--err');
+          })
+          .finally(function () {
+            btn.disabled = false;
+            btn.textContent = formId === 'form-producer' ? 'Richiedi accesso produttore' : 'Avvisami al lancio';
+          });
+      });
+    }
+
+    handleSubmit('form-consumer', 'msg-consumer');
+    handleSubmit('form-producer', 'msg-producer');
+    handleSubmit('form-bottom', 'msg-bottom');
+  })();
+  </script>
 </body>
 </html>
