@@ -273,7 +273,7 @@ img { max-width: 100%; display: block; }
 
 .hero-card__subtitle {
   margin: 0 0 20px;
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
   font-size: 0.98rem;
 }
 
@@ -285,7 +285,7 @@ img { max-width: 100%; display: block; }
 .hero-form__note {
   margin: 14px 0 0;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
 }
 
 .hero-form__link {
@@ -412,7 +412,7 @@ img { max-width: 100%; display: block; }
 }
 
 .highlight-band span {
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
   font-size: 0.95rem;
 }
 
@@ -428,7 +428,7 @@ img { max-width: 100%; display: block; }
 }
 
 .waitlist .section-heading p,
-.waitlist .card p { color: rgba(255, 255, 255, 0.75); }
+.waitlist .card p { color: #fff; }
 
 .waitlist .section-heading h2 {
   color: #fff;
@@ -462,7 +462,7 @@ img { max-width: 100%; display: block; }
 
 .small-note {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
 }
 
 .form--light {
@@ -506,7 +506,7 @@ img { max-width: 100%; display: block; }
 }
 
 .waitlist p {
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
   margin: 0;
 }
 

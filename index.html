@@ -158,37 +158,21 @@
           </div>
         </div>
 
-        <div class="card card--producer-form">
-          <h3>Porta il tuo birrificio o distilleria su Torbido</h3>
-          <p>Cerchiamo microbirrifici e distillerie artigianali con una forte identità. Lascia i tuoi dati e ti contattiamo per l'onboarding.</p>
-          <form class="form form--light" id="form-producer">
-            <input class="input input--light" type="text" name="nome" placeholder="Nome attività" />
-            <input class="input input--light" type="email" name="email" placeholder="Email di contatto" required />
+        <div class="hero-card">
+          <h2 class="hero-card__title">Porta il tuo birrificio o distilleria su Torbido</h2>
+          <p class="hero-card__subtitle">Cerchiamo microbirrifici e distillerie artigianali con una forte identità. Lascia i tuoi dati e ti contattiamo per l'onboarding.</p>
+          <form class="hero-form" id="form-producer">
+            <input class="input" type="text" name="nome" placeholder="Nome attività" />
+            <input class="input" type="email" name="email" placeholder="Email di contatto" required />
             <input type="hidden" name="tipo" value="produttore" />
             <button class="btn btn-primary" type="submit">Richiedi accesso produttore</button>
           </form>
           <p class="form-msg" id="msg-producer"></p>
-          <p class="small-note small-note--light">Partiamo con un gruppo selezionato. Ti contattiamo al momento giusto.</p>
+          <p class="hero-form__note">Partiamo con un gruppo selezionato. Ti contattiamo al momento giusto.</p>
         </div>
       </div>
     </section>
 
-    <section class="section cta-bottom" id="cta-bottom">
-      <div class="container">
-        <div class="hero-card">
-          <h2 class="hero-card__title">Non perderti il lancio di Torbido</h2>
-          <p class="hero-card__subtitle">Birra artigianale italiana e spirits locali, presto a portata di click. Iscriviti alla lista d'attesa.</p>
-          <form class="hero-form" id="form-bottom">
-            <input class="input" type="text" name="nome" placeholder="Il tuo nome" />
-            <input class="input" type="email" name="email" placeholder="La tua email" required />
-            <input type="hidden" name="tipo" value="consumatore" />
-            <button class="btn btn-primary" type="submit">Avvisami al lancio</button>
-          </form>
-          <p class="form-msg" id="msg-bottom"></p>
-          <p class="hero-form__note">Nessuno spam, solo un avviso quando apriamo.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -255,7 +239,6 @@
 
     handleSubmit('form-consumer', 'msg-consumer');
     handleSubmit('form-producer', 'msg-producer');
-    handleSubmit('form-bottom', 'msg-bottom');
   })();
   </script>
 </body>
