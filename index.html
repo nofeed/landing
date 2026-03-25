@@ -15,7 +15,7 @@
   <link rel="icon" href="logo-torbido.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -184,8 +184,6 @@
 
   <script>
   (function () {
-    // Web3Forms: go to web3forms.com, enter your email,
-    // and paste the access key you receive below.
     var ACCESS_KEY = '48192c84-5023-4412-a642-2fea00062d7e';
 
     function handleSubmit(formId, msgId) {
@@ -199,7 +197,7 @@
         btn.disabled = true;
         btn.textContent = 'Invio...';
         msg.textContent = '';
-        msg.className = msg.className.replace(' form-msg--ok', '').replace(' form-msg--err', '');
+        msg.classList.remove('form-msg--ok', 'form-msg--err');
 
         var data = new FormData(form);
         data.append('access_key', ACCESS_KEY);
